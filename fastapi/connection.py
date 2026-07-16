@@ -15,3 +15,11 @@ SessionFactory = sessionmaker(
     autoflush=False,
     expire_on_commit=False
 )
+
+# session 관리 의존성 함수
+def get_session():
+    session = SessionFactory()
+    try:
+        yield session
+    finally:
+        session.close()
