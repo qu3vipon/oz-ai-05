@@ -1,0 +1,29 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: fastapi
+    volumes:
+      - local_db:/var/lib/mysql
+
+  worker:
+    build: ./worker
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:8
+
+volumes:
+  local_db:
