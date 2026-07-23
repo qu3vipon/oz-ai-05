@@ -21,6 +21,8 @@ services:
     build: ./worker
     depends_on:
       - redis
+    volumes:
+      - ./worker:/app
 
   redis:
     image: redis:8
