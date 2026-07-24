@@ -21,5 +21,5 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(256))
     # 회원이 가입한 시각(DB에 저장된 시각을 자동 저장)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, server_default=func.now()
+        DateTime, server_default=func.now() 
     )
